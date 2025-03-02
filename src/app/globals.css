@@ -1,24 +1,94 @@
-@import "tailwindcss";
-
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --muted: #737373;
+  --border: #262626;
+  --card: #171717;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #7c3aed;
+  --secondary-hover: #6d28d9;
 }
 
 body {
+  background-color: var(--background);
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease;
+  }
+
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .button-primary {
+    background-color: var(--primary);
+    color: white;
+  }
+
+  .button-primary:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+  }
+
+  .button-secondary {
+    background-color: var(--secondary);
+    color: white;
+  }
+
+  .button-secondary:hover:not(:disabled) {
+    background-color: var(--secondary-hover);
+  }
+
+  .input, .select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    color: var(--foreground);
+    transition: border-color 0.15s ease;
+  }
+
+  .input:focus, .select:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  .input::placeholder {
+    color: var(--muted);
+  }
+
+  .checkbox {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+  }
+
+  .checkbox:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
 }
